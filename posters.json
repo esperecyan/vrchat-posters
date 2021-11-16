@@ -1,0 +1,52 @@
+[
+	{
+		"id": "vrchat-event-calendar-prefab",
+		"type": "github",
+		"repository": "TsubokuLab/vrchat-event-calendar",
+		"branch": "gh-pages",
+		"path": "/calendar.png"
+	},
+	{
+		"id": "vrchat-event-calendar-prefab-quest",
+		"type": "github",
+		"repository": "TsubokuLab/vrchat-event-calendar",
+		"branch": "gh-pages",
+		"path": "/quest-calendar.png"
+	},
+	{
+		"id": "virtualcast-event-poster-calendar",
+		"type": "github",
+		"repository": "esperecyan/esperecyan.github.io",
+		"branch": "master",
+		"path": "/vcas-calendar.png"
+	},
+	{
+		"id": "weekly-friend-plus",
+		"type": "google-drive",
+		"fileId": "1OiENWnsWyhzg3cy18ZULG-Q_f5CZDnbQ"
+	},
+	{
+		"id": "virtual-life-magazine-p1",
+		"type": "url",
+		"url": "https://vr-lifemagazine.com/vlm-pos/p/1.png",
+		"group": "virtual-life-magazine"
+	},
+	{
+		"id": "virtual-life-magazine-p2",
+		"type": "url",
+		"url": "https://vr-lifemagazine.com/vlm-pos/p/2.png",
+		"group": "virtual-life-magazine"
+	},
+	{
+		"id": "virtual-life-magazine-p3",
+		"type": "url",
+		"url": "https://vr-lifemagazine.com/vlm-pos/p/3.png",
+		"group": "virtual-life-magazine"
+	},
+	{
+		"id": "virtual-life-magazine-p4",
+		"type": "url",
+		"url": "https://vr-lifemagazine.com/vlm-pos/p/4.png",
+		"group": "virtual-life-magazine"
+	}
+]

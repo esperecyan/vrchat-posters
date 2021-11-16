@@ -1,7 +1,17 @@
 {
 	"name": "esperecyan/vrchat-posters",
 	"type": "project",
+	"require": {
+		"intervention/image": "^2.7",
+		"google/apiclient": "^2.11"
+	},
 	"require-dev": {
 		"squizlabs/php_codesniffer": "^3.6"
+	},
+	"autoload": {
+		"files": [ "src/helpers.php" ]
+	},
+	"scripts": {
+		"update-posters": "@php --define display_errors=1 src/update-posters.php"
 	}
 }
