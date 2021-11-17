@@ -18,7 +18,7 @@ jobs:
                 ref: gh-pages
 
             - name: FFmpegのインストール
-              run: sudo apt --assume-yes install ffmpeg
+              uses: FedericoCarboni/setup-ffmpeg@dbe266744738dd1fa54db0ecb35d11461c94a90a #v1
 
             - name: PHPライブラリのキャッシュ
               uses: actions/cache@v2
