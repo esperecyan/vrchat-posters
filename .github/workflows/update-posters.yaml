@@ -1,6 +1,9 @@
 name: ポスターの更新確認・アトラス化
 
-on: workflow_dispatch
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: 37 * * * *
 
 jobs:
     update-posters:
