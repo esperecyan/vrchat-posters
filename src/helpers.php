@@ -13,6 +13,11 @@ use Intervention\Image\{
 };
 use Google\Client;
 use Google\Service\Drive;
+use Google\Service\Drive\DriveFile;
+
+const GOOGLE_DRIVE_POSTER_FILE_ID = '1GNmXObYedTDlKG1Yq8TiFAEE1zv1LW5l';
+const GOOGLE_DRIVE_POSTER_OLD_FILE_ID = '1_EACTaE3k3zkA9kN_tSCMIaBQ85LkD8k';
+const GOOGLE_DRIVE_POSTER_TEST_QUEST1_FILE_ID = '1K7f8NtPy_rXqPwBiAinYfda0DJKL5yVo';
 
 const QUEST1_TEXTURE_SIZE = 2000;
 
@@ -65,7 +70,7 @@ function getGoogleDrive(): Drive
     $client->setAuthConfig(json_decode($secretKey
         ? $secretKey
         : /* ローカルデバッグ */ file_get_contents(__DIR__ . '/../.googleServiceAccountSecretKey.json'), associative: true));
-    $client->addScope(Drive::DRIVE_READONLY);
+    $client->addScope(Drive::DRIVE);
     return new Drive($client);
 }
 
@@ -90,6 +95,17 @@ function fetchGoogleDriveFileUpdateDateTime(Drive $drive, $id): DateTimeImmutabl
 function fetchGoogleDriveFile(Drive $drive, $id): string
 {
     return $drive->files->get($id, [ 'alt' => 'media' ])->getBody()->getContents();
+}
+
+/**
+ * Googleドライブの単一ファイルを更新します。
+ * @param Drive $drive
+ * @param string $id ファイルのID。
+ * @param string $data バイナリデータ。
+ */
+function putFileToGoogleDrive(Drive $drive, string $id, string $data): void
+{
+    $drive->files->update($id, new DriveFile(), [ 'data' => $data ]);
 }
 
 /**

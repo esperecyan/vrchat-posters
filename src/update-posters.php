@@ -5,13 +5,19 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use Intervention\Image\ImageManagerStatic as Image;
-use const esperecyan\vrchat_posters\QUEST1_TEXTURE_SIZE;
+use const esperecyan\vrchat_posters\{
+    GOOGLE_DRIVE_POSTER_FILE_ID,
+    GOOGLE_DRIVE_POSTER_OLD_FILE_ID,
+    GOOGLE_DRIVE_POSTER_TEST_QUEST1_FILE_ID,
+    QUEST1_TEXTURE_SIZE,
+};
 use function esperecyan\vrchat_posters\{
     fetchGitHubFileUpdateDateTime,
     fetchGitHubFile,
     getGoogleDrive,
     fetchGoogleDriveFileUpdateDateTime,
     fetchGoogleDriveFile,
+    putFileToGoogleDrive,
     fetchURLUpdateDateTime,
     combinePosters,
     convertImageToVideo,
@@ -128,3 +134,12 @@ convertImageToVideo($cacheImagePath, $rootPath . 'posters.mp4');
 
 // 初代Quest用の動画を作成
 convertImageToVideo($cacheImagePath, $rootPath . 'posters-quest1.mp4', QUEST1_TEXTURE_SIZE);
+
+// Googleドライブのファイルを更新
+putFileToGoogleDrive($drive, GOOGLE_DRIVE_POSTER_FILE_ID, file_get_contents($rootPath . 'posters.mp4'));
+putFileToGoogleDrive($drive, GOOGLE_DRIVE_POSTER_OLD_FILE_ID, file_get_contents($rootPath . 'posters.mp4'));
+putFileToGoogleDrive(
+    $drive,
+    GOOGLE_DRIVE_POSTER_TEST_QUEST1_FILE_ID,
+    file_get_contents($rootPath . 'posters-quest1.mp4')
+);
