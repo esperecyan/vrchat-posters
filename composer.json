@@ -1,0 +1,7 @@
+{
+	"name": "esperecyan/vrchat-posters",
+	"type": "project",
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.6"
+	}
+}
