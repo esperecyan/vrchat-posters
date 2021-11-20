@@ -7,7 +7,7 @@ require_once 'vendor/autoload.php';
 use Intervention\Image\ImageManagerStatic as Image;
 use const esperecyan\vrchat_posters\{
     GOOGLE_DRIVE_POSTER_FILE_ID,
-    GOOGLE_DRIVE_POSTER_OLD_FILE_ID,
+    GOOGLE_DRIVE_POSTER_QUEST1_FILE_ID,
     GOOGLE_DRIVE_POSTER_TEST_QUEST1_FILE_ID,
     QUEST1_TEXTURE_SIZE,
 };
@@ -137,7 +137,11 @@ convertImageToVideo($cacheImagePath, $rootPath . 'posters-quest1.mp4', QUEST1_TE
 
 // Googleドライブのファイルを更新
 putFileToGoogleDrive($drive, GOOGLE_DRIVE_POSTER_FILE_ID, file_get_contents($rootPath . 'posters.mp4'));
-putFileToGoogleDrive($drive, GOOGLE_DRIVE_POSTER_OLD_FILE_ID, file_get_contents($rootPath . 'posters.mp4'));
+putFileToGoogleDrive(
+    $drive,
+    GOOGLE_DRIVE_POSTER_QUEST1_FILE_ID,
+    file_get_contents($rootPath . 'posters-quest1.mp4')
+);
 putFileToGoogleDrive(
     $drive,
     GOOGLE_DRIVE_POSTER_TEST_QUEST1_FILE_ID,
