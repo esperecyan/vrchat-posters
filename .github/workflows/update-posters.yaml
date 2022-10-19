@@ -49,3 +49,31 @@ jobs:
                 repository: ./gh-pages
                 branch: gh-pages
                 commit_message: ポスターデータの更新
+
+    push-for-v2-prefab:
+        name: v2.xのプレハブで指定しているURL向けに esperecyan/esperecyan.github.io のmasterブランチを更新
+        needs: update-posters
+        permissions:
+            contents: read
+        runs-on: ubuntu-22.04
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                path: ./esperecyan.github.io
+                repository: esperecyan/esperecyan.github.io
+                ref: master
+
+            - uses: actions/checkout@v3
+              with:
+                path: ./gh-pages
+                ref: gh-pages
+
+            - run: cp gh-pages/posters-quest1.mp4 esperecyan.github.io/vrchat-posters.mp4
+
+            - uses: peaceiris/actions-gh-pages@068dc23d9710f1ba62e86896f84735d869951305 # v3.8.0
+              with:
+                deploy_key: ${{ secrets.ESPERECYAN_GITHUB_IO_DEPLOY_KEY }}
+                external_repository: esperecyan/esperecyan.github.io
+                publish_branch: master
+                publish_dir: ./esperecyan.github.io
+                force_orphan: true
