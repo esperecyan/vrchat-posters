@@ -16,11 +16,15 @@ jobs:
             - name: メインブランチをチェックアウト
               uses: actions/checkout@v3
 
-            - name: 「gh-pages」フォルダへ現在のデータを展開
-              uses: actions/checkout@v3
+            - name: 「posters-data」フォルダへ現在のデータを展開
+              id: download-posters-data
+              uses: dawidd6/action-download-artifact@46b4ae883bf0726f5949d025d31cb62c7a5ac70c #v2.24.0
               with:
-                path: ./gh-pages
-                ref: gh-pages
+                name: posters-data
+                path: ./posters-data/
+                if_no_artifact_found: warn
+            - if: steps.download-posters-data.outputs.found_artifact == 'false'
+              run: mkdir ./posters-data/
 
             - name: FFmpegのインストール
               uses: FedericoCarboni/setup-ffmpeg@102916131ac71e9c7ad6fa9d98fed2c9d86722e6 #v1.1.0
@@ -46,39 +50,55 @@ jobs:
               env:
                 GOOGLE_SERVICE_ACCOUNT_SECRET_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_SECRET_KEY }}
 
-            - name: コミット
+            - name: 現在のポスターデータを保持
               if: steps.update.outputs.updated
-              uses: stefanzweifel/git-auto-commit-action@abd87b7d94702070bef78dc1d56b6928b8fa9ecc #v4.12.0
+              uses: actions/upload-artifact@v3
               with:
-                repository: ./gh-pages
-                branch: gh-pages
-                commit_message: ポスターデータの更新
+                name: posters-data
+                path: ./posters-data/
+                retention-days: 90
 
-    push-for-v2-prefab:
-        name: v2.xのプレハブで指定しているURL向けに esperecyan/esperecyan.github.io のmasterブランチを更新
-        needs: update-posters
-        if: needs.update-posters.outputs.updated
-        permissions:
-            contents: read
-        runs-on: ubuntu-22.04
-        steps:
-            - uses: actions/checkout@v3
+            - name: GitHub Pages用のデータをアップロード
+              if: steps.update.outputs.updated
+              uses: actions/upload-pages-artifact@v1
+              with:
+                path: _site/
+
+            # v2.xのプレハブで指定しているURL向けに https://github.com/esperecyan/esperecyan.github.io/tree/master を更新
+            - name: esperecyan/esperecyan.github.io の master ブランチをチェックアウト
+              if: steps.update.outputs.updated
+              uses: actions/checkout@v3
               with:
                 path: ./esperecyan.github.io
                 repository: esperecyan/esperecyan.github.io
                 ref: master
 
-            - uses: actions/checkout@v3
-              with:
-                path: ./gh-pages
-                ref: gh-pages
+            - name: Quest1向け動画をコピー
+              if: steps.update.outputs.updated
+              run: cp _site/posters-quest1.mp4 esperecyan.github.io/vrchat-posters.mp4
 
-            - run: cp gh-pages/posters-quest1.mp4 esperecyan.github.io/vrchat-posters.mp4
-
-            - uses: peaceiris/actions-gh-pages@068dc23d9710f1ba62e86896f84735d869951305 # v3.8.0
+            - name: https://github.com/esperecyan/esperecyan.github.io/tree/master へ GitHub Pages として Commit & Push
+              if: steps.update.outputs.updated
+              uses: peaceiris/actions-gh-pages@068dc23d9710f1ba62e86896f84735d869951305 # v3.8.0
               with:
                 deploy_key: ${{ secrets.ESPERECYAN_GITHUB_IO_DEPLOY_KEY }}
                 external_repository: esperecyan/esperecyan.github.io
                 publish_branch: master
                 publish_dir: ./esperecyan.github.io
                 #force_orphan: true
+
+    deploy:
+        needs: update-posters
+        if: needs.update-posters.outputs.updated
+
+        permissions:
+            pages: write
+            id-token: write
+        runs-on: ubuntu-22.04
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        steps:
+            - name: Deploy to GitHub Pages
+              uses: actions/deploy-pages@v1

@@ -2,4 +2,5 @@
 
 # ローカルデバッグ用
 /.googleServiceAccountSecretKey.json
-/gh-pages/
+/posters-data/
+/_site/

@@ -22,10 +22,12 @@ use function esperecyan\vrchat_posters\{
     convertImageToVideo,
 };
 
-$rootPath = __DIR__ . '/../gh-pages/';
+$rootPath = __DIR__ . '/../';
+$postersDataFolderPath = $rootPath . 'posters-data/';
+$pagesFolderPath = $rootPath . '_site/';
 
-$posterUpdateDatesPath = $rootPath . 'posters-update-dates.json';
-$cacheImagePath = $rootPath . 'posters-cache.png';
+$posterUpdateDatesPath = $postersDataFolderPath . 'posters-update-dates.json';
+$cacheImagePath = $postersDataFolderPath . 'posters-cache.png';
 
 /** @var bool 2回目以降の実行なら `true`。 */
 $cacheExisting = file_exists($posterUpdateDatesPath);
@@ -129,17 +131,18 @@ file_put_contents($posterUpdateDatesPath, json_encode(
 $texture = Image::make($cacheExisting ? $cacheImagePath : __DIR__ . '/../posters-template.png');
 combinePosters($texture, $posters);
 $texture->save($cacheImagePath);
-convertImageToVideo($cacheImagePath, $rootPath . 'posters.mp4');
+mkdir($pagesFolderPath);
+convertImageToVideo($cacheImagePath, $pagesFolderPath . 'posters.mp4');
 
 // 初代Quest用の動画を作成
-convertImageToVideo($cacheImagePath, $rootPath . 'posters-quest1.mp4', QUEST1_TEXTURE_SIZE);
+convertImageToVideo($cacheImagePath, $pagesFolderPath . 'posters-quest1.mp4', QUEST1_TEXTURE_SIZE);
 
 // Googleドライブのファイルを更新
-putFileToGoogleDrive($drive, GOOGLE_DRIVE_POSTER_FILE_ID, file_get_contents($rootPath . 'posters.mp4'));
+putFileToGoogleDrive($drive, GOOGLE_DRIVE_POSTER_FILE_ID, file_get_contents($pagesFolderPath . 'posters.mp4'));
 putFileToGoogleDrive(
     $drive,
     GOOGLE_DRIVE_POSTER_QUEST1_FILE_ID,
-    file_get_contents($rootPath . 'posters-quest1.mp4')
+    file_get_contents($pagesFolderPath . 'posters-quest1.mp4')
 );
 
 // 出力
