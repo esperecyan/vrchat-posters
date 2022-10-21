@@ -10,6 +10,8 @@ jobs:
         permissions:
             contents: write
         runs-on: ubuntu-22.04
+        outputs:
+            updated: ${{ steps.update.outputs.updated }}
         steps:
             - name: メインブランチをチェックアウト
               uses: actions/checkout@v3
@@ -39,11 +41,13 @@ jobs:
               run: composer install --no-dev
 
             - name: 更新
+              id: update
               run: composer run-script update-posters
               env:
                 GOOGLE_SERVICE_ACCOUNT_SECRET_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_SECRET_KEY }}
 
             - name: コミット
+              if: steps.update.outputs.updated
               uses: stefanzweifel/git-auto-commit-action@abd87b7d94702070bef78dc1d56b6928b8fa9ecc #v4.12.0
               with:
                 repository: ./gh-pages
@@ -53,6 +57,7 @@ jobs:
     push-for-v2-prefab:
         name: v2.xのプレハブで指定しているURL向けに esperecyan/esperecyan.github.io のmasterブランチを更新
         needs: update-posters
+        if: needs.update-posters.outputs.updated
         permissions:
             contents: read
         runs-on: ubuntu-22.04

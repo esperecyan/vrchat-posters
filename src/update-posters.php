@@ -141,3 +141,6 @@ putFileToGoogleDrive(
     GOOGLE_DRIVE_POSTER_QUEST1_FILE_ID,
     file_get_contents($rootPath . 'posters-quest1.mp4')
 );
+
+// 出力
+file_put_contents(getenv('GITHUB_OUTPUT'), "\nupdated=on", FILE_APPEND);
