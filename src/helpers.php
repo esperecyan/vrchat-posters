@@ -157,6 +157,6 @@ function convertImageToVideo(string $imagePath, string $videoPath, int $width = 
         . ($width ? ' -vf ' . escapeshellarg("scale=$width:-1") : '')
         . ' -vcodec libx264 -pix_fmt yuv420p -r 60 ' . escapeshellarg($videoPath), $output, $returnVar);
     if ($returnVar > 0) {
-        throw new RuntimeException($output, $returnVar);
+        throw new RuntimeException(implode("\n", $output), $returnVar);
     }
 }
