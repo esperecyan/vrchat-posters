@@ -38,6 +38,7 @@ $idDateTimePairs = $cacheExisting ? array_map(
     fn($date) => new DateTimeImmutable($date),
     json_decode(file_get_contents($posterUpdateDatesPath), associative: true, flags: JSON_THROW_ON_ERROR)
 ) : [ ];
+echo '::debug::$idDateTimePairs: 更新確認前: ' . json_encode($idDateTimePairs, JSON_PRETTY_PRINT);
 /** @var (?string)[] ポスター配置順の、更新された画像のバイナリデータ。 */
 $posters = [ ];
 /** @var bool[] グループと更新されているか否かの連想配列。 */
@@ -117,6 +118,8 @@ foreach (json_decode(file_get_contents(__DIR__ . '/../posters.json')) as $inform
             break;
     }
 }
+
+echo '::debug::$idDateTimePairs: 更新確認後: ' . json_encode($idDateTimePairs, JSON_PRETTY_PRINT);
 
 if (!array_filter($posters)) {
     // 更新されたポスターが無ければ
