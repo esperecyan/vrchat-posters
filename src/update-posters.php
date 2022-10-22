@@ -95,7 +95,7 @@ foreach (json_decode(file_get_contents(__DIR__ . '/../posters.json')) as $inform
     }
 
     echo "::notice::更新: $information->id: "
-        . $idDateTimePairs[$information->group ?? $information->id]->format(DateTimeInterface::ATOM)
+        . $idDateTimePairs[$information->group ?? $information->id]?->format(DateTimeInterface::ATOM)
         . " → {$updateDateTime->format(DateTimeInterface::ATOM)}\n";
 
     if ($updateDateTime) {
