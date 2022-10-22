@@ -94,11 +94,13 @@ foreach (json_decode(file_get_contents(__DIR__ . '/../posters.json')) as $inform
         continue;
     }
 
+    echo "::notice::更新: $information->id: "
+        . $idDateTimePairs[$information->group ?? $information->id]->format(DateTimeInterface::ATOM)
+        . " → {$updateDateTime->format(DateTimeInterface::ATOM)}\n";
+
     if ($updateDateTime) {
         $idDateTimePairs[$information->group ?? $information->id] = $updateDateTime;
     }
-
-    echo "更新: $information->id\n";
 
     // ポスター画像データの取得
     switch ($information->type) {
@@ -118,6 +120,7 @@ foreach (json_decode(file_get_contents(__DIR__ . '/../posters.json')) as $inform
 
 if (!array_filter($posters)) {
     // 更新されたポスターが無ければ
+    echo "::notice::更新なし\n";
     exit;
 }
 
