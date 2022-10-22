@@ -127,6 +127,10 @@ if (!array_filter($posters)) {
     exit;
 }
 
+if (!file_exists($postersDataFolderPath)) {
+    mkdir($postersDataFolderPath);
+}
+
 // 更新日時の保存
 file_put_contents($posterUpdateDatesPath, json_encode(
     array_map(fn($dateTime) => $dateTime->format(DateTimeInterface::RFC3339_EXTENDED), $idDateTimePairs),

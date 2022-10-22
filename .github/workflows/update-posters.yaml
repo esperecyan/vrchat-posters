@@ -23,8 +23,6 @@ jobs:
                 name: posters-data
                 path: ./posters-data/
                 if_no_artifact_found: warn
-            - if: steps.download-posters-data.outputs.found_artifact == 'false'
-              run: mkdir ./posters-data/
 
             - name: FFmpegのインストール
               uses: FedericoCarboni/setup-ffmpeg@102916131ac71e9c7ad6fa9d98fed2c9d86722e6 #v1.1.0
