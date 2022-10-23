@@ -147,7 +147,7 @@ function combinePosters(Image $image, array $posters): void
 
 /**
  * 画像を2フレームの動画へ変換します。
- * @param Image $imagePath
+ * @param string $imagePath
  * @param string $videoPath
  * @param int $width 画像と異なる解像度の動画にする場合の幅 (ピクセル数)。
  */
