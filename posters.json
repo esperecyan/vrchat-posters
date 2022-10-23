@@ -1,5 +1,14 @@
 [
 	{
+		"versionSuffixes": [ "-v4" ],
+		"id": "vrchat-event-calendar-official-asset",
+		"type": "url",
+		"url": "https://dktsak5gftmtr.cloudfront.net/data/vrcCalQ_PC.mp4",
+		"fileType": "mp4",
+		"rect": { "x": 0, "y": 0, "width": 1400, "height": 1400 }
+	},
+	{
+		"versionSuffixes": [ "" ],
 		"id": "vrchat-event-calendar-prefab",
 		"type": "github",
 		"repository": "TsubokuLab/vrchat-event-calendar",
@@ -8,6 +17,7 @@
 		"rect": { "x": 0, "y": 0, "width": 1000, "height": 1414 }
 	},
 	{
+		"versionSuffixes": [ "" ],
 		"id": "vrchat-event-calendar-prefab-quest",
 		"type": "github",
 		"repository": "TsubokuLab/vrchat-event-calendar",
@@ -16,6 +26,7 @@
 		"rect": { "x": 1000, "y": 0, "width": 1000, "height": 1414 }
 	},
 	{
+		"versionSuffixes": [ "", "-v4" ],
 		"id": "virtualcast-event-poster-calendar",
 		"type": "github",
 		"repository": "esperecyan/esperecyan.github.io",
@@ -24,12 +35,14 @@
 		"rect": { "x": 2000, "y": 0, "width": 1000, "height": 1414 }
 	},
 	{
+		"versionSuffixes": [ "", "-v4" ],
 		"id": "weekly-friend-plus",
 		"type": "google-drive",
 		"fileId": "1OiENWnsWyhzg3cy18ZULG-Q_f5CZDnbQ",
 		"rect": { "x": 3000, "y": 0, "width": 1000, "height": 1414 }
 	},
 	{
+		"versionSuffixes": [ "", "-v4" ],
 		"id": "virtual-life-magazine-p1",
 		"type": "url",
 		"url": "https://vr-lifemagazine.com/vlm-pos/p/1.png",
@@ -37,6 +50,7 @@
 		"rect": { "x": 0, "y": 1414, "width": 1000, "height": 1414 }
 	},
 	{
+		"versionSuffixes": [ "", "-v4" ],
 		"id": "virtual-life-magazine-p2",
 		"type": "url",
 		"url": "https://vr-lifemagazine.com/vlm-pos/p/2.png",
@@ -44,6 +58,7 @@
 		"rect": { "x": 1000, "y": 1414, "width": 1000, "height": 1414 }
 	},
 	{
+		"versionSuffixes": [ "", "-v4" ],
 		"id": "virtual-life-magazine-p3",
 		"type": "url",
 		"url": "https://vr-lifemagazine.com/vlm-pos/p/3.png",
@@ -51,6 +66,7 @@
 		"rect": { "x": 2000, "y": 1414, "width": 1000, "height": 1414 }
 	},
 	{
+		"versionSuffixes": [ "", "-v4" ],
 		"id": "virtual-life-magazine-p4",
 		"type": "url",
 		"url": "https://vr-lifemagazine.com/vlm-pos/p/4.png",

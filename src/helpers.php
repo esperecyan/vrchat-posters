@@ -15,8 +15,13 @@ use Google\Client;
 use Google\Service\Drive;
 use Google\Service\Drive\DriveFile;
 
-const GOOGLE_DRIVE_POSTER_FILE_ID = '1GNmXObYedTDlKG1Yq8TiFAEE1zv1LW5l';
-const GOOGLE_DRIVE_POSTER_QUEST1_FILE_ID = '1_EACTaE3k3zkA9kN_tSCMIaBQ85LkD8k';
+const GOOGLE_DRIVE_POSTER_FILE_NAME_ID_PAIRS = [
+    'posters-v4.mp4' => '1yjika6cwaTVgqdhlxeglZfSGbfay5y8e',
+    'posters-v4-quest1.mp4' => '1K0mmm2GmffwuS-5hcopb70K_Ou2A7zlW',
+    // v1 〜 v3
+    'posters.mp4' => '1GNmXObYedTDlKG1Yq8TiFAEE1zv1LW5l',
+    'posters-quest1.mp4' => '1_EACTaE3k3zkA9kN_tSCMIaBQ85LkD8k',
+];
 
 const QUEST1_TEXTURE_SIZE = 2000;
 
@@ -134,6 +139,32 @@ function combinePosters(Image $image, array $posters): void
             $updatedImage->resize($poster->rect->width, $poster->rect->height);
         }
         $image->insert($updatedImage, 'top-left', $poster->rect->x, $poster->rect->y);
+    }
+}
+
+/**
+ * MP4の最初のフレームを抽出します。
+ * @param string $video MP4のバイナリデータ。
+ * @return string 画像のバリナリデータ。
+ */
+function extractImageFromVideo(string $video): string
+{
+    $temporaryVideoPath = tempnam(sys_get_temp_dir(), prefix: '') . '.mp4';
+    $temporaryImagePath = tempnam(sys_get_temp_dir(), prefix: '') . '.png';
+    try {
+        file_put_contents($temporaryVideoPath, $video);
+        exec('ffmpeg -i ' . escapeshellarg($temporaryVideoPath) . ' -frames:v 1 '
+            . escapeshellarg($temporaryImagePath), $output, $returnVar);
+        if ($returnVar > 0) {
+            throw new RuntimeException(implode("\n", $output), $returnVar);
+        }
+        return file_get_contents($temporaryImagePath);
+    } finally {
+        foreach ([ $temporaryVideoPath, $temporaryImagePath ] as $path) {
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
     }
 }
 
