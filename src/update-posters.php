@@ -39,13 +39,13 @@ $idDateTimePairs = $cacheExisting ? array_map(
     json_decode(file_get_contents($posterUpdateDatesPath), associative: true, flags: JSON_THROW_ON_ERROR)
 ) : [ ];
 echo '::debug::$idDateTimePairs: 更新確認前: ' . json_encode($idDateTimePairs, JSON_PRETTY_PRINT) . "\n";
-/** @var (?string)[] ポスター配置順の、更新された画像のバイナリデータ。 */
-$posters = [ ];
+/** @var stdClass[] 各ポスターに関するデータ。 */
+$posters = json_decode(file_get_contents(__DIR__ . '/../posters.json'));
 /** @var bool[] グループと更新されているか否かの連想配列。 */
 $groupUpdatedPairs = [ ];
 $drive = getGoogleDrive();
 /** @var \stdClass $information 必須の「id」「type」プロパティと、typeに応じて他のプロパティを持つオブジェクト。 */
-foreach (json_decode(file_get_contents(__DIR__ . '/../posters.json')) as $information) {
+foreach ($posters as $information) {
     $updated = null;
 
     if (!$cacheExisting) {
@@ -58,7 +58,6 @@ foreach (json_decode(file_get_contents(__DIR__ . '/../posters.json')) as $inform
         if ($groupUpdatedPairs[$information->group]) {
             $updated = true;
         } else {
-            $posters[] = null;
             continue;
         }
     }
@@ -91,7 +90,6 @@ foreach (json_decode(file_get_contents(__DIR__ . '/../posters.json')) as $inform
     }
 
     if (!$updated) {
-        $posters[] = null;
         continue;
     }
 
@@ -108,22 +106,23 @@ foreach (json_decode(file_get_contents(__DIR__ . '/../posters.json')) as $inform
     // ポスター画像データの取得
     switch ($information->type) {
         case 'github':
-            $posters[] = fetchGitHubFile($information->repository, $information->path);
+            $information->updatedImage = fetchGitHubFile($information->repository, $information->path);
             break;
 
         case 'google-drive':
-            $posters[] = fetchGoogleDriveFile($drive, $information->fileId);
+            $information->updatedImage = fetchGoogleDriveFile($drive, $information->fileId);
             break;
 
         case 'url':
-            $posters[] = file_get_contents($information->url);
+            $information->updatedImage = file_get_contents($information->url);
             break;
     }
 }
 
 echo '::debug::$idDateTimePairs: 更新確認後: ' . json_encode($idDateTimePairs, JSON_PRETTY_PRINT) . "\n";
 
-if (!array_filter($posters)) {
+$updatedPosters = array_filter($posters, fn(stdClass $information): bool => isset($information->updatedImage));
+if (!$updatedPosters) {
     // 更新されたポスターが無ければ
     echo "::notice::更新なし\n";
     exit;
@@ -141,10 +140,10 @@ file_put_contents($posterUpdateDatesPath, json_encode(
 
 // キャッシュ画像、PC、Quest2用の動画を作成
 $texture = Image::make($cacheExisting ? $cacheImagePath : __DIR__ . '/../posters-template.png');
-combinePosters($texture, $posters);
+combinePosters($texture, $updatedPosters);
 $texture->save($cacheImagePath);
 if (!file_exists($pagesFolderPath)) {
-mkdir($pagesFolderPath);
+    mkdir($pagesFolderPath);
 }
 convertImageToVideo($cacheImagePath, $pagesFolderPath . 'posters.mp4');
 

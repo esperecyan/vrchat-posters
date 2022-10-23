@@ -124,24 +124,16 @@ function fetchURLUpdateDateTime(string $url): DateTimeImmutable
 /**
  * 画像へポスターを重ねます。
  * @param Image $image
- * @param string[] $posters 画像のバイナリデータの配列。
+ * @param stdClass[] $posters 各ポスターに関するデータ。
  */
 function combinePosters(Image $image, array $posters): void
 {
-    $width = $image->getWidth() / HORIZONTALLY_COUNT;
-    $height = $width / ASPECT_RATIO;
-
-    foreach ($posters as $order => $poster) {
-        if (!$poster) {
-            continue;
+    foreach ($posters as $poster) {
+        $updatedImage = ImageManagerStatic::make($poster->updatedImage);
+        if ($updatedImage->getWidth() !== $poster->rect->width) {
+            $updatedImage->resize($poster->rect->width, $poster->rect->height);
         }
-
-        $image->insert(
-            ImageManagerStatic::make($poster)->resize($width, $height),
-            'top-left',
-            ($order % HORIZONTALLY_COUNT) * $width,
-            round(intdiv($order, HORIZONTALLY_COUNT) * $height)
-        );
+        $image->insert($updatedImage, 'top-left', $poster->rect->x, $poster->rect->y);
     }
 }
 

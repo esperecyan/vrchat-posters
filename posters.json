@@ -4,49 +4,57 @@
 		"type": "github",
 		"repository": "TsubokuLab/vrchat-event-calendar",
 		"branch": "gh-pages",
-		"path": "/calendar.png"
+		"path": "/calendar.png",
+		"rect": { "x": 0, "y": 0, "width": 1000, "height": 1414 }
 	},
 	{
 		"id": "vrchat-event-calendar-prefab-quest",
 		"type": "github",
 		"repository": "TsubokuLab/vrchat-event-calendar",
 		"branch": "gh-pages",
-		"path": "/quest-calendar.png"
+		"path": "/quest-calendar.png",
+		"rect": { "x": 1000, "y": 0, "width": 1000, "height": 1414 }
 	},
 	{
 		"id": "virtualcast-event-poster-calendar",
 		"type": "github",
 		"repository": "esperecyan/esperecyan.github.io",
 		"branch": "master",
-		"path": "/vcas-calendar.png"
+		"path": "/vcas-calendar.png",
+		"rect": { "x": 2000, "y": 0, "width": 1000, "height": 1414 }
 	},
 	{
 		"id": "weekly-friend-plus",
 		"type": "google-drive",
-		"fileId": "1OiENWnsWyhzg3cy18ZULG-Q_f5CZDnbQ"
+		"fileId": "1OiENWnsWyhzg3cy18ZULG-Q_f5CZDnbQ",
+		"rect": { "x": 3000, "y": 0, "width": 1000, "height": 1414 }
 	},
 	{
 		"id": "virtual-life-magazine-p1",
 		"type": "url",
 		"url": "https://vr-lifemagazine.com/vlm-pos/p/1.png",
-		"group": "virtual-life-magazine"
+		"group": "virtual-life-magazine",
+		"rect": { "x": 0, "y": 1414, "width": 1000, "height": 1414 }
 	},
 	{
 		"id": "virtual-life-magazine-p2",
 		"type": "url",
 		"url": "https://vr-lifemagazine.com/vlm-pos/p/2.png",
-		"group": "virtual-life-magazine"
+		"group": "virtual-life-magazine",
+		"rect": { "x": 1000, "y": 1414, "width": 1000, "height": 1414 }
 	},
 	{
 		"id": "virtual-life-magazine-p3",
 		"type": "url",
 		"url": "https://vr-lifemagazine.com/vlm-pos/p/3.png",
-		"group": "virtual-life-magazine"
+		"group": "virtual-life-magazine",
+		"rect": { "x": 2000, "y": 1414, "width": 1000, "height": 1414 }
 	},
 	{
 		"id": "virtual-life-magazine-p4",
 		"type": "url",
 		"url": "https://vr-lifemagazine.com/vlm-pos/p/4.png",
-		"group": "virtual-life-magazine"
+		"group": "virtual-life-magazine",
+		"rect": { "x": 3000, "y": 1414, "width": 1000, "height": 1414 }
 	}
 ]
