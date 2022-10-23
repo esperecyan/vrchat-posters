@@ -158,4 +158,7 @@ putFileToGoogleDrive(
 );
 
 // 出力
-file_put_contents(getenv('GITHUB_OUTPUT'), "\nupdated=on", FILE_APPEND);
+$githubOutput = getenv('GITHUB_OUTPUT');
+if ($githubOutput) {
+    file_put_contents($githubOutput, "\nupdated=on", FILE_APPEND);
+}
