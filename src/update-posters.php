@@ -20,6 +20,7 @@ use function esperecyan\vrchat_posters\{
     fetchURLUpdateDateTime,
     combinePosters,
     convertImageToVideo,
+    convertVideoResolution,
 };
 
 $rootPath = __DIR__ . '/../';
@@ -148,7 +149,7 @@ if (!file_exists($pagesFolderPath)) {
 convertImageToVideo($cacheImagePath, $pagesFolderPath . 'posters.mp4');
 
 // 初代Quest用の動画を作成
-convertImageToVideo($cacheImagePath, $pagesFolderPath . 'posters-quest1.mp4', QUEST1_TEXTURE_SIZE);
+convertVideoResolution($pagesFolderPath . 'posters.mp4', $pagesFolderPath . 'posters-quest1.mp4', QUEST1_TEXTURE_SIZE);
 
 // Googleドライブのファイルを更新
 putFileToGoogleDrive($drive, GOOGLE_DRIVE_POSTER_FILE_ID, file_get_contents($pagesFolderPath . 'posters.mp4'));

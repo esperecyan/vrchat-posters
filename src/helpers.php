@@ -141,13 +141,27 @@ function combinePosters(Image $image, array $posters): void
  * 画像を2フレームの動画へ変換します。
  * @param string $imagePath
  * @param string $videoPath
- * @param int $width 画像と異なる解像度の動画にする場合の幅 (ピクセル数)。
  */
-function convertImageToVideo(string $imagePath, string $videoPath, int $width = null): void
+function convertImageToVideo(string $imagePath, string $videoPath): void
 {
     exec('ffmpeg -y -framerate 60 -loop 1 -t 0.24 -i ' . escapeshellarg($imagePath)
-        . ($width ? ' -vf ' . escapeshellarg("scale=$width:-1") : '')
         . ' -vcodec libx264 -pix_fmt yuv420p -r 60 ' . escapeshellarg($videoPath), $output, $returnVar);
+    if ($returnVar > 0) {
+        throw new RuntimeException(implode("\n", $output), $returnVar);
+    }
+}
+
+/**
+ * 動画の解像度を変更します。
+ * @param string $sourcePath
+ * @param string $destinationPath
+ * @param int $width 変換後の幅 (ピクセル数)。
+ */
+function convertVideoResolution(string $sourcePath, string $destinationPath, int $width): void
+{
+    exec('ffmpeg -y -i ' . escapeshellarg($sourcePath)
+        . ' -vf ' . escapeshellarg("scale=$width:-1")
+        . ' ' . escapeshellarg($destinationPath), $output, $returnVar);
     if ($returnVar > 0) {
         throw new RuntimeException(implode("\n", $output), $returnVar);
     }
