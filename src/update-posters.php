@@ -137,7 +137,9 @@ file_put_contents($posterUpdateDatesPath, json_encode(
 $texture = Image::make($cacheExisting ? $cacheImagePath : __DIR__ . '/../posters-template.png');
 combinePosters($texture, $posters);
 $texture->save($cacheImagePath);
+if (!file_exists($pagesFolderPath)) {
 mkdir($pagesFolderPath);
+}
 convertImageToVideo($cacheImagePath, $pagesFolderPath . 'posters.mp4');
 
 // 初代Quest用の動画を作成
