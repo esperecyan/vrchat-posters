@@ -50,6 +50,7 @@ jobs:
               id: update
               run: composer run-script update-posters
               env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 GOOGLE_SERVICE_ACCOUNT_SECRET_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_SECRET_KEY }}
 
             - name: 現在のポスターデータを保持
