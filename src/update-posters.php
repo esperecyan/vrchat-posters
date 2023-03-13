@@ -175,16 +175,13 @@ foreach ($allVersionSuffixes as $versionSuffix) {
     );
 
     // Googleドライブのファイルを更新
-    putFileToGoogleDrive(
-        $drive,
-        GOOGLE_DRIVE_POSTER_FILE_NAME_ID_PAIRS[$videoFileName],
-        file_get_contents($pagesFolderPath . $videoFileName),
-    );
-    putFileToGoogleDrive(
-        $drive,
-        GOOGLE_DRIVE_POSTER_FILE_NAME_ID_PAIRS[$quest1VideoFileName],
-        file_get_contents($pagesFolderPath . $quest1VideoFileName),
-    );
+    if (isset(GOOGLE_DRIVE_POSTER_FILE_NAME_ID_PAIRS[$quest1VideoFileName])) {
+        putFileToGoogleDrive(
+            $drive,
+            GOOGLE_DRIVE_POSTER_FILE_NAME_ID_PAIRS[$quest1VideoFileName],
+            file_get_contents($pagesFolderPath . $quest1VideoFileName),
+        );
+    }
 }
 
 // 出力

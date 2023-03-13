@@ -16,10 +16,8 @@ use Google\Service\Drive;
 use Google\Service\Drive\DriveFile;
 
 const GOOGLE_DRIVE_POSTER_FILE_NAME_ID_PAIRS = [
-    'posters-v4.mp4' => '1yjika6cwaTVgqdhlxeglZfSGbfay5y8e',
-    'posters-v4-quest1.mp4' => '1K0mmm2GmffwuS-5hcopb70K_Ou2A7zlW',
-    // v1 〜 v3
-    'posters.mp4' => '1GNmXObYedTDlKG1Yq8TiFAEE1zv1LW5l',
+    // v1
+    // Googleドライブが動画URLのホワイトリストから外されたが、v1ではGoogleドライブのみを利用していたため、そのプレハブを利用している古いワールドの機能を維持するため、同期を継続する
     'posters-quest1.mp4' => '1_EACTaE3k3zkA9kN_tSCMIaBQ85LkD8k',
 ];
 
