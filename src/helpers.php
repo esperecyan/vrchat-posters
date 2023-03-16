@@ -41,12 +41,14 @@ const TIME_ZONE = 'Asia/Tokyo';
  */
 function fetchGitHubFileUpdateDateTime(string $repository, string $branch, string $path): DateTimeImmutable
 {
+    $githubToken = getenv('GITHUB_TOKEN');
     return (new DateTimeImmutable(json_decode(file_get_contents(
         "https://api.github.com/repos/$repository/commits?"
             . http_build_query([ 'sha' => $branch, 'path' => $path, 'per_page' => '1' ]),
-        context: stream_context_create([ 'http' =>
-            [ 'header' => [ 'user-agent: ' . USER_AGENT, 'authorization: Bearer ' . getenv('GITHUB_TOKEN') ] ],
-        ])
+        context: stream_context_create([ 'http' => [ 'header' => [
+            'user-agent: ' . USER_AGENT,
+            $githubToken ? 'authorization: Bearer ' . $githubToken : null,
+        ] ] ])
     ))[0]->commit->committer->date))->setTimezone(new DateTimeZone(TIME_ZONE));
 }
 
