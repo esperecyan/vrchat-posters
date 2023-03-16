@@ -2,6 +2,7 @@
 	"recommendations": [
 		"editorconfig.editorconfig",
 		"redhat.vscode-yaml",
-		"ikappas.phpcs"
+		"ikappas.phpcs",
+		"bmewburn.vscode-intelephense-client"
 	]
 }

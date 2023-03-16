@@ -9,5 +9,6 @@
 		"https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json":
 			".github/workflows/*.yaml"
 	},
-	"phpcs.executablePath": "vendor/bin/phpcs"
+	"phpcs.executablePath": "vendor/bin/phpcs",
+	"intelephense.environment.phpVersion": "8.1.2"
 }
