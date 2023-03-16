@@ -13,5 +13,10 @@
 	},
 	"scripts": {
 		"update-posters": "@php --define display_errors=1 src/update-posters.php"
+	},
+	"config": {
+		"platform": {
+			"php": "8.1.2"
+		}
 	}
 }
