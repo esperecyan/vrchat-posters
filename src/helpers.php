@@ -132,15 +132,17 @@ function fetchURLUpdateDateTime(string $url): DateTimeImmutable
  * 画像へポスターを重ねます。
  * @param Image $image
  * @param stdClass[] $posters 各ポスターに関するデータ。
+ * @param bool $video VideoPlayer向けの旧バージョンなら `true`。
  */
-function combinePosters(Image $image, array $posters): void
+function combinePosters(Image $image, array $posters, bool $video): void
 {
     foreach ($posters as $poster) {
+        $rect = $video ? ($poster->rectForVideo ?? $poster->rect) : $poster->rect;
         $updatedImage = ImageManagerStatic::make($poster->updatedImage);
-        if ($updatedImage->getWidth() !== $poster->rect->width) {
-            $updatedImage->resize($poster->rect->width, $poster->rect->height);
+        if ($updatedImage->getWidth() !== $rect->width) {
+            $updatedImage->resize($rect->width, $rect->height);
         }
-        $image->insert($updatedImage, 'top-left', $poster->rect->x, $poster->rect->y);
+        $image->insert($updatedImage, 'top-left', $rect->x, $rect->y);
     }
 }
 

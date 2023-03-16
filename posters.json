@@ -1,6 +1,6 @@
 [
 	{
-		"versionSuffixes": [ "-v4" ],
+		"versionSuffixes": [ "-v4", "-v5-vrchat-event-calendar" ],
 		"id": "vrchat-event-calendar-official-asset",
 		"type": "url",
 		"url": "https://dktsak5gftmtr.cloudfront.net/data/vrcCalQ_PC.mp4",
@@ -26,20 +26,22 @@
 		"rect": { "x": 1000, "y": 0, "width": 1000, "height": 1414 }
 	},
 	{
-		"versionSuffixes": [ "", "-v4" ],
+		"versionSuffixes": [ "", "-v4", "-v5" ],
 		"id": "virtualcast-event-poster-calendar",
 		"type": "github",
 		"repository": "esperecyan/esperecyan.github.io",
 		"branch": "master",
 		"path": "/vcas-calendar.png",
-		"rect": { "x": 2000, "y": 0, "width": 1000, "height": 1414 }
+		"rect": { "x": 0, "y": 0, "width": 1024, "height": 2048 },
+		"rectForVideo": { "x": 2000, "y": 0, "width": 1000, "height": 1414 }
 	},
 	{
-		"versionSuffixes": [ "", "-v4" ],
+		"versionSuffixes": [ "", "-v4", "-v5" ],
 		"id": "weekly-friend-plus",
 		"type": "google-drive",
 		"fileId": "1OiENWnsWyhzg3cy18ZULG-Q_f5CZDnbQ",
-		"rect": { "x": 3000, "y": 0, "width": 1000, "height": 1414 }
+		"rect": { "x": 1024, "y": 0, "width": 1024, "height": 2048 },
+		"rectForVideo": { "x": 3000, "y": 0, "width": 1000, "height": 1414 }
 	},
 	{
 		"versionSuffixes": [ "", "-v4" ],
