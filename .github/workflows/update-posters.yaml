@@ -88,7 +88,7 @@ jobs:
                 external_repository: esperecyan/esperecyan.github.io
                 publish_branch: master
                 publish_dir: ./esperecyan.github.io
-                #force_orphan: true
+                force_orphan: true
 
     deploy:
         needs: update-posters
