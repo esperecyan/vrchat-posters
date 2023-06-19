@@ -22,7 +22,7 @@ jobs:
 
             - name: 「posters-data」フォルダへ現在のデータを展開
               id: download-posters-data
-              uses: dawidd6/action-download-artifact@e6e25ac3a2b93187502a8be1ef9e9603afc34925 #v2.24.2
+              uses: dawidd6/action-download-artifact@246dbf436b23d7c49e21a7ab8204ca9ecd1fe615 #v2.27.0
               with:
                 name: posters-data
                 path: ./posters-data/
@@ -104,4 +104,4 @@ jobs:
 
         steps:
             - name: Deploy to GitHub Pages
-              uses: actions/deploy-pages@v1
+              uses: actions/deploy-pages@v2
