@@ -28,10 +28,8 @@
 	{
 		"versionSuffixes": [ "", "-v4", "-v5" ],
 		"id": "virtualcast-event-poster-calendar",
-		"type": "github",
-		"repository": "esperecyan/esperecyan.github.io",
-		"branch": "master",
-		"path": "/vcas-calendar.png",
+		"type": "url",
+		"url": "https://esperecyan.github.io/vcas-calendar-poster/v4.png",
 		"rect": { "x": 0, "y": 0, "width": 1024, "height": 2048 },
 		"rectForVideo": { "x": 2000, "y": 0, "width": 1000, "height": 1414 }
 	},
