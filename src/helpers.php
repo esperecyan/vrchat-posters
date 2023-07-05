@@ -33,6 +33,21 @@ const USER_AGENT = 'esperecyan/vrchat-posters';
 const TIME_ZONE = 'Asia/Tokyo';
 
 /**
+ * URLからデータを取得します。
+ * @param ...$arguments `file_get_contents()` 関数へ渡す引数。
+ * @throws RuntimeException 取得に失敗したとき。
+ * @return string バイナリデータ。
+ */
+function fetchFile(...$arguments)
+{
+    $file = file_get_contents(...$arguments);
+    if ($file === false) {
+        throw new RuntimeException("<$arguments[0]> からのデータ取得に失敗しました。");
+    }
+    return $file;
+}
+
+/**
  * GitHubリポジトリの単一ファイルの最新コミット日時を取得します。
  * @param string $repository ユーザー名 (組織名) を含む対象のリポジトリ名。
  * @param string $branch 対象のブランチ名。
@@ -42,7 +57,7 @@ const TIME_ZONE = 'Asia/Tokyo';
 function fetchGitHubFileUpdateDateTime(string $repository, string $branch, string $path): DateTimeImmutable
 {
     $githubToken = getenv('GITHUB_TOKEN');
-    return (new DateTimeImmutable(json_decode(file_get_contents(
+    return (new DateTimeImmutable(json_decode(fetchFile(
         "https://api.github.com/repos/$repository/commits?"
             . http_build_query([ 'sha' => $branch, 'path' => $path, 'per_page' => '1' ]),
         context: stream_context_create([ 'http' => [ 'header' => [
@@ -62,7 +77,7 @@ function fetchGitHubFile(string $repository, string $path): string
 {
     [ $userName, $repositoryName ] = explode('/', $repository);
     $host = $userName . '.github.io';
-    return file_get_contents('https://' . $host . ($host === $repositoryName ? '' : '/' . $repositoryName) . $path);
+    return fetchFile('https://' . $host . ($host === $repositoryName ? '' : '/' . $repositoryName) . $path);
 }
 
 /**

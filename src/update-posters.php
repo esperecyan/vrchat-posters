@@ -10,6 +10,7 @@ use const esperecyan\vrchat_posters\{
     QUEST1_TEXTURE_SIZE,
 };
 use function esperecyan\vrchat_posters\{
+    fetchFile,
     fetchGitHubFileUpdateDateTime,
     fetchGitHubFile,
     getGoogleDrive,
@@ -120,7 +121,7 @@ foreach ($posters as $information) {
             break;
 
         case 'url':
-            $information->updatedImage = file_get_contents($information->url);
+            $information->updatedImage = fetchFile($information->url);
             break;
     }
     if (isset($information->fileType) && $information->fileType === 'mp4') {
