@@ -40,5 +40,37 @@
 		"fileId": "1OiENWnsWyhzg3cy18ZULG-Q_f5CZDnbQ",
 		"rect": { "x": 1024, "y": 0, "width": 1024, "height": 2048 },
 		"rectForVideo": { "x": 3000, "y": 0, "width": 1000, "height": 1414 }
+	},
+	{
+		"versionSuffixes": [ "", "-v4" ],
+		"id": "virtual-life-magazine-p1",
+		"type": "url",
+		"url": "https://vr-lifemagazine.com/vlm-pos/p/1.png",
+		"group": "virtual-life-magazine",
+		"rect": { "x": 0, "y": 1414, "width": 1000, "height": 1414 }
+	},
+	{
+		"versionSuffixes": [ "", "-v4" ],
+		"id": "virtual-life-magazine-p2",
+		"type": "url",
+		"url": "https://vr-lifemagazine.com/vlm-pos/p/2.png",
+		"group": "virtual-life-magazine",
+		"rect": { "x": 1000, "y": 1414, "width": 1000, "height": 1414 }
+	},
+	{
+		"versionSuffixes": [ "", "-v4" ],
+		"id": "virtual-life-magazine-p3",
+		"type": "url",
+		"url": "https://vr-lifemagazine.com/vlm-pos/p/3.png",
+		"group": "virtual-life-magazine",
+		"rect": { "x": 2000, "y": 1414, "width": 1000, "height": 1414 }
+	},
+	{
+		"versionSuffixes": [ "", "-v4" ],
+		"id": "virtual-life-magazine-p4",
+		"type": "url",
+		"url": "https://vr-lifemagazine.com/vlm-pos/p/4.png",
+		"group": "virtual-life-magazine",
+		"rect": { "x": 3000, "y": 1414, "width": 1000, "height": 1414 }
 	}
 ]
