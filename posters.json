@@ -5,7 +5,16 @@
 		"type": "url",
 		"url": "https://dktsak5gftmtr.cloudfront.net/data/vrcCalQ_PC.mp4",
 		"fileType": "mp4",
+		"group": "vrchat-event-calendar-official-asset-old-version",
 		"rect": { "x": 0, "y": 0, "width": 1400, "height": 1400 }
+	},
+	{
+		"versionSuffixes": [ "-v4", "-v5-vrchat-event-calendar" ],
+		"id": "vrchat-event-calendar-official-asset-old-version-message",
+		"type": "static",
+		"path": "vrchat-event-calendar-official-asset-old-version-message.png",
+		"group": "vrchat-event-calendar-official-asset-old-version",
+		"rect": { "x": 0, "y": 0, "width": 700, "height": 394 }
 	},
 	{
 		"versionSuffixes": [ "" ],

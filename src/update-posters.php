@@ -123,6 +123,10 @@ foreach ($posters as $information) {
         case 'url':
             $information->updatedImage = fetchFile($information->url);
             break;
+
+        case 'static':
+            $information->updatedImage = file_get_contents($information->path);
+            break;
     }
     if (isset($information->fileType) && $information->fileType === 'mp4') {
         $information->updatedImage = extractImageFromVideo($information->updatedImage);
