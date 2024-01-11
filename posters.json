@@ -1,22 +1,5 @@
 [
 	{
-		"versionSuffixes": [ "-v4", "-v5-vrchat-event-calendar" ],
-		"id": "vrchat-event-calendar-official-asset",
-		"type": "url",
-		"url": "https://dktsak5gftmtr.cloudfront.net/data/vrcCalQ_PC.mp4",
-		"fileType": "mp4",
-		"rect": { "x": 0, "y": 0, "width": 1400, "height": 1400 }
-	},
-	{
-		"versionSuffixes": [ "" ],
-		"id": "vrchat-event-calendar-prefab",
-		"type": "github",
-		"repository": "TsubokuLab/vrchat-event-calendar",
-		"branch": "gh-pages",
-		"path": "/calendar.png",
-		"rect": { "x": 0, "y": 0, "width": 1000, "height": 1414 }
-	},
-	{
 		"versionSuffixes": [ "" ],
 		"id": "vrchat-event-calendar-prefab-quest",
 		"type": "github",

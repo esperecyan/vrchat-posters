@@ -209,6 +209,8 @@ foreach ($allVersionSuffixes as $versionSuffix) {
     }
 }
 
+copy(__DIR__ . '/../posters-v5-vrchat-event-calendar.png', $pagesFolderPath . 'posters-v5-vrchat-event-calendar.png');
+
 // 出力
 $githubOutput = getenv('GITHUB_OUTPUT');
 if ($githubOutput) {
