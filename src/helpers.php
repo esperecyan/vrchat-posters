@@ -68,16 +68,15 @@ function fetchGitHubFileUpdateDateTime(string $repository, string $branch, strin
 }
 
 /**
- * GitHub Pagesの単一ファイルを取得します。
+ * GitHubの単一ファイルを取得します。
  * @param string $repository ユーザー名 (組織名) を含む対象のリポジトリ名。
+ * @param string $branch 対象のブランチ名。
  * @param string $path 「/」で始まるパス。
  * @return string バイナリデータ。
  */
-function fetchGitHubFile(string $repository, string $path): string
+function fetchGitHubFile(string $repository, string $branch, string $path): string
 {
-    [ $userName, $repositoryName ] = explode('/', $repository);
-    $host = $userName . '.github.io';
-    return fetchFile('https://' . $host . ($host === $repositoryName ? '' : '/' . $repositoryName) . $path);
+    return fetchFile("https://raw.githubusercontent.com/$repository/$branch$path");
 }
 
 /**

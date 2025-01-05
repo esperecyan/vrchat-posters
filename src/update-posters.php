@@ -113,7 +113,8 @@ foreach ($posters as $information) {
     // ポスター画像データの取得
     switch ($information->type) {
         case 'github':
-            $information->updatedImage = fetchGitHubFile($information->repository, $information->path);
+            $information->updatedImage
+                = fetchGitHubFile($information->repository, $information->branch, $information->path);
             break;
 
         case 'google-drive':
