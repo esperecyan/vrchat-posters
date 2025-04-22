@@ -16,10 +16,6 @@ jobs:
             - name: メインブランチをチェックアウト
               uses: actions/checkout@v4
 
-            - name: メインブランチへ60日間コミットがないと、スケジュールされたワークフローが停止するのを防止
-              # https://docs.github.com/actions/managing-workflow-runs/disabling-and-enabling-a-workflow
-              uses: gautamkrishnar/keepalive-workflow@790c7f09285a59b09bb578c85e271c6ff2af97c4 #v1.1.0
-
             - name: 「posters-data」フォルダへ現在のデータを展開
               id: download-posters-data
               uses: dawidd6/action-download-artifact@e7466d1a7587ed14867642c2ca74b5bcc1e19a2d #v3.0.0
